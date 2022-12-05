@@ -1,6 +1,7 @@
 package com.example.employee_app_backend.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -12,20 +13,20 @@ public class EmployeeController {
         return "welcome employee !!";
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public String add()
     {
         return "home page";
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String Search()
     {
         return "search page";
     }
 
 
-    @GetMapping("/edit")
+    @PostMapping("/edit")
     public String Edit()
     {
         return "edit page";
@@ -37,7 +38,7 @@ public class EmployeeController {
         return "view all";
     }
 
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     public  String Delete()
     {
         return "delete page";
