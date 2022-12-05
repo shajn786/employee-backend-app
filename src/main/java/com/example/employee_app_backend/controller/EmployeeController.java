@@ -31,5 +31,11 @@ public class EmployeeController {
         return "edit page";
     }
 
+    @GetMapping("/viewall")
+    public  String ViewAll()
+    {
+        return "view all";
+    }
+
 
 }
