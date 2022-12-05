@@ -37,5 +37,11 @@ public class EmployeeController {
         return "view all";
     }
 
+    @GetMapping("/delete")
+    public  String Delete()
+    {
+        return "delete page";
+    }
+
 
 }
