@@ -18,6 +18,11 @@ public class EmployeeController {
         return "home page";
     }
 
+    @GetMapping("/search")
+    public String Search()
+    {
+        return "search page";
+    }
 
 
 
