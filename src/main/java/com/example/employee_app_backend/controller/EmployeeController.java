@@ -3,11 +3,9 @@ package com.example.employee_app_backend.controller;
 import com.example.employee_app_backend.dao.EmployeeDao;
 import com.example.employee_app_backend.model.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -22,8 +20,9 @@ public class EmployeeController {
         return "welcome employee !!";
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(path="/add", consumes = "application/json", produces = "application/json")
-    public String add(@RequestBody Employees e)
+    public HashMap<String, String> add(@RequestBody Employees e)
 
     {
         System.out.println(e.getId());
@@ -33,13 +32,19 @@ public class EmployeeController {
         System.out.println(e.getUsername());
         System.out.println(e.getPassword());
         dao.save(e);
-        return "employee added successfully";
+        HashMap<String, String> map =new HashMap<>();
+        map.put("status","success");
+        return map;
     }
 
-    @PostMapping("/search")
-    public String Search()
+    @CrossOrigin(origins = "*")
+    @PostMapping(path="/search", consumes = "application/json", produces = "application/json")
+    public List<Employees> Search(@RequestBody Employees e)
     {
-        return "search page";
+        String empcode= String.valueOf(e.getEmpcode());
+        System.out.println(empcode);
+        return (List<Employees>) dao.SearchEmployee(e.getEmpcode());
+
     }
 
 
@@ -49,6 +54,7 @@ public class EmployeeController {
         return "edit page";
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/viewall")
     public List<Employees> ViewAll()
     {
